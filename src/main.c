@@ -58,13 +58,23 @@ int main(void)
     #ifdef ATWINC_ENABLED
     OpenAndConnectTcpClientSocket();
     #endif
+    
+    int i = 0;
+    uint8_t cr[9];
+    int i = 0;
 
     while (1) {
          /* Handle pending events from network controller. */
+        uint8_t cr[9];
+        while (app_uart_get(&cr[i]) != NRF_SUCCESS);
         nrf_delay_ms(50);
         if(button_callback_callad) {
             send_temperature();
             button_callback_callad = false;
         }
+        i++;
+        if (cr[i] == '\0') {
+            i = 0;
+        }        
     }
 }
