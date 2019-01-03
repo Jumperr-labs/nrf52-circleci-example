@@ -54,6 +54,7 @@ class TestEndToEnd(unittest.TestCase):
             match = re.search('(Temperature: )(\d{2})', self.uart.read())
             temp_uart = int(match.group(2))
             success = False
+            temp_aws = 0
             for j in range(60):
                 try:
                     temp_aws = int(self.read_from_aws())
