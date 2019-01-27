@@ -13,7 +13,7 @@ client = boto3.client('iot-data', region_name='us-east-1')
 
 class TestEndToEnd(unittest.TestCase):
     def setUp(self):
-        print(self.id().split('.')[-1])  # test name
+        print(self.id().split('.')[-1])
         tcp_server_dir = os.path.join(here, '..', 'tcp-server')
         self.gateway_process = subprocess.Popen(['python', 'aws-temprature.py'], cwd=tcp_server_dir)
         sleep(2)
